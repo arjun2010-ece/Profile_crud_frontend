@@ -9,7 +9,7 @@ const MainPage = () => {
      <p>You are going to create a profile and edit it and make a get request and delete profile too.</p>
      <div className="btn-group">
        <Link to="/create" target="_blank">Create</Link>
-       <Link to="/details" target="_blank">Details</Link>
+       <Link to="/list" target="_blank">List</Link>
      </div>
   </div>
  )

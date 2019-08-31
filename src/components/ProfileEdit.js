@@ -3,7 +3,7 @@ import '../App.css';
 import {connect} from 'react-redux';
 import {profileAdd} from '../actions/profile';
 
-class ProfileCreate extends Component {
+class ProfileEdit extends Component {
    constructor(props){
       super(props);
       this.state = {
@@ -72,4 +72,4 @@ class ProfileCreate extends Component {
   )
  }
 }
-export default connect(null, {profileAdd})(ProfileCreate);
+export default connect(null, {profileAdd})(ProfileEdit);
