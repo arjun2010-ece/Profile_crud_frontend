@@ -13,36 +13,27 @@ class ProfileCreate extends Component {
  
    fileSelectedHandler = (e) => {
       this.setState({ image: e.target.files[0] });
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
    }
- onSubmit = (e) => {
-   
+
+   onSubmit = (e) => {
    e.preventDefault();
-   
    //Getting the values
    const firstName = this.inpFirstname.value;
    const lastName = this.inpLastname.value;
    const emailId = this.inpemail.value;
-   // "Profile validation failed: emailId: Path `emailId` is required."
-   // console.log(firstName, lastName, email);
-   
+
    const fd = {
       firstName,
       lastName,
       emailId,
       image: this.state.image
    };
-   // fd.append('firstName', firstName);
-   // fd.append('lastName', lastName);
-   // fd.append('emailId', email)
-   // const image = this.state.image;
-   // fd.append('productImage',image, image.name);
-   // console.log(fd);
    this.props.profileAdd(fd);
  }
  render() {
   return (
-   <form name="profileCreate" className="profile-form" onSubmit={this.onSubmit}>
+   <form name="profileCreate" className="profile-form" onSubmit={e => this.onSubmit(e)}>
       <div className="form-control">
          <label htmlFor="firstName">First Name</label><br/>
          <input type="text" id="firstName" name="firstName" placeholder="First Name" ref ={input => this.inpFirstname = input} />

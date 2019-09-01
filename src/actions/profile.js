@@ -6,9 +6,8 @@ export const profileAdd = (formData) => async dispatch => {
       headers : { 'Content-Type': 'application/json' }
     };
      try {
-       const res = await api.post('/api/profile/create', formData, config);
-       console.log(res.data);
-       dispatch({ type: 'CREATE_PROFILE', payload: res.data });
+       await api.post('/api/profile/create', formData, config);
+       dispatch({ type: 'CREATE_PROFILE', payload: formData });
      } catch (error) {
       console.log(error);
      }
@@ -17,8 +16,8 @@ export const profileAdd = (formData) => async dispatch => {
 export const profileFetch = () => async dispatch => {
 
   try {
-    const res = await api.post('/api/profile/list');
-    console.log(res.data);
+    const res = await api.get('/api/profile/list');
+    // console.log(res.data);
     dispatch({ type: 'GET_PROFILE', payload: res.data });
   } catch (error) {
    console.log(error);
