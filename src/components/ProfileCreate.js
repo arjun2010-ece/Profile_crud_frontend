@@ -23,14 +23,15 @@ class ProfileCreate extends Component {
    const firstName = this.inpFirstname.value;
    const lastName = this.inpLastname.value;
    const emailId = this.inpemail.value;
+   const productImage = this.state.image;
 
-   const fd = {
+   let fd = {
       firstName,
       lastName,
       emailId,
-      image: this.state.image
+      productImage
    };
-   this.props.profileAdd(fd,this.props.history);
+   this.props.profileAdd(fd, this.props.history);
  }
  render() {
   return (
@@ -48,12 +49,14 @@ class ProfileCreate extends Component {
 
       <div className="form-control">
          <label htmlFor="prodImage">Product Image</label><br/>
-         <input type="file" id="prodImage"  onChange={this.fileSelectedHandler} />
+         <input type="file" id="prodImage" name="prodImage" 
+         onChange={this.fileSelectedHandler} />
       </div>
 
       <div className="form-control">
          <label htmlFor="email">Email</label><br/>
-         <input type="email" id="email" ref ={input => this.inpemail = input} />
+         <input type="email" id="email" name="email" 
+         ref ={input => this.inpemail = input} />
       </div>
 
       <div className="form-action">

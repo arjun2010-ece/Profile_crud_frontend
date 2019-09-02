@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {connect} from 'react-redux';
-import {profileAdd} from '../actions/profile';
+import {profileUpdate, profileFetchDetail} from '../actions/profile';
+import { withRouter } from 'react-router-dom';
 
 class ProfileEdit extends Component {
    constructor(props){
@@ -10,7 +11,9 @@ class ProfileEdit extends Component {
          image : null
       }
    }
- 
+   componentDidMount(){
+      profileFetchDetail(this.props.match.params.id);
+   }
    fileSelectedHandler = (e) => {
       this.setState({ image: e.target.files[0] });
       console.log(e.target.files[0]);
@@ -23,22 +26,15 @@ class ProfileEdit extends Component {
    const firstName = this.inpFirstname.value;
    const lastName = this.inpLastname.value;
    const emailId = this.inpemail.value;
-   // "Profile validation failed: emailId: Path `emailId` is required."
-   // console.log(firstName, lastName, email);
-   
+
    const fd = {
       firstName,
       lastName,
       emailId,
       image: this.state.image
    };
-   // fd.append('firstName', firstName);
-   // fd.append('lastName', lastName);
-   // fd.append('emailId', email)
-   // const image = this.state.image;
-   // fd.append('productImage',image, image.name);
-   // console.log(fd);
-   this.props.profileAdd(fd);
+   const id = this.props.match.params.id;
+   this.props.profileUpdate(id, fd, this.props.history);
  }
  render() {
   return (
@@ -72,4 +68,4 @@ class ProfileEdit extends Component {
   )
  }
 }
-export default connect(null, {profileAdd})(ProfileEdit);
+export default connect(null, {profileUpdate,profileFetchDetail})(withRouter(ProfileEdit));

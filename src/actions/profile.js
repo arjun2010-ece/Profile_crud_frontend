@@ -2,10 +2,11 @@ import api from '../api';
 
 // profile create
 export const profileAdd = (formData, history) => async dispatch => {
-
+    console.log(formData);
      const config = {
-      headers : { 'Content-Type': 'application/json' }
-    };
+        headers : { 'Content-Type': 'application/json' }
+      };
+
      try {
        await api.post('/api/profile/create', formData, config);
        dispatch({ type: 'CREATE_PROFILE', payload: formData });
@@ -14,6 +15,22 @@ export const profileAdd = (formData, history) => async dispatch => {
       console.log(error);
      }
 }
+
+// profile update
+export const profileUpdate = (id,formData, history) => async dispatch => {
+
+  const config = {
+   headers : { 'Content-Type': 'application/json' }
+ };
+  try {
+    await api.put(`/api/profile/${id}/update`, formData, config);
+    dispatch({ type: 'CREATE_PROFILE', payload: formData });
+    // history.push('/list')
+  } catch (error) {
+   console.log(error);
+  }
+}
+
 
 // profile get all list
 export const profileFetch = () => async dispatch => {

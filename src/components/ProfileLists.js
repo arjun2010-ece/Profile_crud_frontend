@@ -22,7 +22,7 @@ class ProfileLists extends Component {
                  this.props.profiles.map(profile => (
                   <div key={profile._id} className="profile-list-item">
                      <h4>{profile.firstName} {" "} {profile.lastName}</h4>
-                     <Link to="/edit" target="_blank" className="btn">EDIT</Link>
+                     <Link to={`/edit/${profile._id}`} target="_blank" className="btn">EDIT</Link>
                      <button className="btn" onClick={()=>profileDelete(profile._id)}>DELETE</button>
                      <Link to={`/details/${profile._id}`}  
                         className="btn"

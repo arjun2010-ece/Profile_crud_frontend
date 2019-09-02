@@ -21,7 +21,7 @@ class App extends Component {
             <Route exact path="/create" component={ProfileCreate} />
             <Route exact path="/details/:id" component={ProfileDetails} />
             <Route exact path="/list" component={ProfileLists} />
-            <Route exact path="/edit" component={ProfileEdit} />
+            <Route exact path="/edit/:id" component={ProfileEdit} />
           </Switch>
         </Fragment>
       </BrowserRouter>
