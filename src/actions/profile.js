@@ -1,6 +1,7 @@
 import api from '../api';
 
-export const profileAdd = (formData) => async dispatch => {
+// profile create
+export const profileAdd = (formData, history) => async dispatch => {
 
      const config = {
       headers : { 'Content-Type': 'application/json' }
@@ -8,17 +9,40 @@ export const profileAdd = (formData) => async dispatch => {
      try {
        await api.post('/api/profile/create', formData, config);
        dispatch({ type: 'CREATE_PROFILE', payload: formData });
+       history.push('/list')
      } catch (error) {
       console.log(error);
      }
 }
 
+// profile get all list
 export const profileFetch = () => async dispatch => {
 
   try {
     const res = await api.get('/api/profile/list');
-    // console.log(res.data);
     dispatch({ type: 'GET_PROFILE', payload: res.data });
+  } catch (error) {
+   console.log(error);
+  }
+}
+
+// profile get single list item corresponding to id
+export const profileFetchDetail = (id) => async dispatch => {
+
+  try {
+    const res = await api.get(`/api/profile/${id}`);
+    dispatch({ type: 'GET_PROFILE_SINGLE', payload: res.data });
+  } catch (error) {
+   console.log(error);
+  }
+}
+
+// profile delete
+export const profileDelete = (id) => async dispatch => {
+  try {
+    const res = await api.delete(`/api/profile/${id}/delete`);
+    dispatch({ type: 'DELETE_PROFILE', payload: res.data });
+    dispatch(profileFetch());
   } catch (error) {
    console.log(error);
   }

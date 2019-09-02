@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import '../App.css';
-import {profileFetch} from '../actions/profile';
+import {profileFetchDetail} from '../actions/profile';
 import {connect} from 'react-redux';
 
 class ProfileDetails extends Component {
   componentDidMount(){
-    this.props.profileFetch();
+    const id = this.props.match.params.id;
+    this.props.profileFetchDetail(id);
   }
  render() {
   return (
@@ -14,23 +15,28 @@ class ProfileDetails extends Component {
      <div className="prof-detail-wrapper">
         <div className="prof-detail prof-detail-first">
           <h4>First Name :</h4>
-          <p>Arjun</p>
+          <p>{this.props.profile.firstName}</p>
         </div>
         <div className="prof-detail">
           <h4>Last Name :</h4>
-          <p>Sah</p>
+          <p>{this.props.profile.lastName}</p>
         </div>
         <div className="prof-detail-img">
           {/* <h4>Profile Pic :</h4> */}
-          <p><img src="Arjun.jpg" alt="Profile"/></p>
+          <p><img src={`this.props.profile.productImage.split('/')[1]`} alt={this.props.profile.firstName}/></p>
         </div>
         <div className="prof-detail">
           <h4>Email :</h4>
-          <p>arjun2010.ece@gmail.com</p>
+          <p>{this.props.profile.emailId}</p>
         </div>
      </div>
    </div>
   )
  }
 }
-export default connect(null, {profileFetch})(ProfileDetails);
+
+const mapStateToProps = state => ({
+  profile: state.profile.profile
+})
+
+export default connect(mapStateToProps, {profileFetchDetail})(ProfileDetails);

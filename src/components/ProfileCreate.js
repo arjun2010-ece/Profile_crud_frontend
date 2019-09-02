@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import {connect} from 'react-redux';
 import {profileAdd} from '../actions/profile';
+import { withRouter } from 'react-router-dom';
 
 class ProfileCreate extends Component {
    constructor(props){
@@ -29,7 +30,7 @@ class ProfileCreate extends Component {
       emailId,
       image: this.state.image
    };
-   this.props.profileAdd(fd);
+   this.props.profileAdd(fd,this.props.history);
  }
  render() {
   return (
@@ -63,4 +64,4 @@ class ProfileCreate extends Component {
   )
  }
 }
-export default connect(null, {profileAdd})(ProfileCreate);
+export default connect(null, {profileAdd})(withRouter(ProfileCreate));
