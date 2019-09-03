@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../App.css';
 import {profileFetchDetail} from '../actions/profile';
 import {connect} from 'react-redux';
+// import api from '../api';
+
 
 class ProfileDetails extends Component {
   componentDidMount(){
@@ -22,13 +24,12 @@ class ProfileDetails extends Component {
           <p>{this.props.profile.lastName}</p>
         </div>
         <div className="prof-detail-img">
-            <p><img src="/img/Arjun.jpg" alt="Profile not available" /></p>
-          {/* {this.props.profile.productImage && (
-            <p><img src={`this.props.profile.productImage`} alt={this.props.profile.firstName}/></p>
+          {this.props.profile.productImage && (
+            <p><img src={`http://localhost:3030/${this.props.profile.productImage}`} alt={this.props.profile.firstName}/></p>
           )}
           {!this.props.profile.productImage && (
-            <p><img src="/img/no_profile.png" alt="Image not available" /></p>
-          )} */}
+            <p><img src="/img/no_profile.png" alt="tagy not available" /></p>
+          )}  
         </div>
         <div className="prof-detail">
           <h4>Email :</h4>

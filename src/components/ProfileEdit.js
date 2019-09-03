@@ -1,63 +1,65 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {connect} from 'react-redux';
-import {profileUpdate, profileFetchDetail} from '../actions/profile';
+import {profileFetchDetail} from '../actions/profile';
 import { withRouter } from 'react-router-dom';
 
 class ProfileEdit extends Component {
    constructor(props){
       super(props);
       this.state = {
-         image : null
+         firstName: '',
+         lastName: '',
+         emailId: '',
       }
+      // const id = this.props.match.params.id;
+      // this.props.profileFetchDetail(id);
    }
-   componentDidMount(){
-      profileFetchDetail(this.props.match.params.id);
-   }
-   fileSelectedHandler = (e) => {
-      this.setState({ image: e.target.files[0] });
-      console.log(e.target.files[0]);
-   }
- onSubmit = (e) => {
-   
-   e.preventDefault();
-   
-   //Getting the values
-   const firstName = this.inpFirstname.value;
-   const lastName = this.inpLastname.value;
-   const emailId = this.inpemail.value;
+  componentDidMount(){
+      const id = this.props.match.params.id;
+      this.props.profileFetchDetail(id);
+      
+      this.updateState();
+  }
 
-   const fd = {
-      firstName,
-      lastName,
-      emailId,
-      image: this.state.image
-   };
-   const id = this.props.match.params.id;
-   this.props.profileUpdate(id, fd, this.props.history);
- }
+  updateState(){
+   this.setState({
+      firstName: this.props.profile.firstName,
+      lastName: this.props.profile.lastName,
+      emailId: this.props.profile.emailId
+   })
+  }
+  onChange(e){
+     this.setState({
+        [e.target.name]: e.target.value
+     })
+  }
  render() {
+    const {firstName,lastName,emailId} = this.state;
+    console.log(this.props.profile);
+
+  
   return (
-   <form name="profileCreate" className="profile-form" onSubmit={this.onSubmit}>
+   <form name="profileCreate" className="profile-form">
       <div className="form-control">
          <label htmlFor="firstName">First Name</label><br/>
-         <input type="text" id="firstName" name="firstName" placeholder="First Name" ref ={input => this.inpFirstname = input} />
+         <input type="text" id="firstName" defaultValue={firstName} onChange={(e) => this.onChange(e)}
+          name="firstName" placeholder="First Name" 
+           />
       </div>
 
       <div className="form-control">
          <label htmlFor="LastName">Last Name</label><br/>
-         <input type="text" id="LastName" name="lastName" placeholder="Last Name" 
-               ref ={input => this.inpLastname = input}/>
-      </div>
-
-      <div className="form-control">
-         <label htmlFor="prodImage">Product Image</label><br/>
-         <input type="file" id="prodImage"  onChange={this.fileSelectedHandler} />
+         <input type="text" id="LastName" defaultValue={lastName} onChange={(e) => this.onChange(e)}
+            name="lastName" placeholder="Last Name" 
+            
+            />
       </div>
 
       <div className="form-control">
          <label htmlFor="email">Email</label><br/>
-         <input type="email" id="email" ref ={input => this.inpemail = input} />
+         <input type="email" id="email" defaultValue={emailId} onChange={(e) => this.onChange(e)}
+             />
       </div>
 
       <div className="form-action">
@@ -68,4 +70,9 @@ class ProfileEdit extends Component {
   )
  }
 }
-export default connect(null, {profileUpdate,profileFetchDetail})(withRouter(ProfileEdit));
+
+const mapStateToProps = state => ({
+   profile: state.profile.profile
+})
+
+export default connect(mapStateToProps, {profileFetchDetail})(withRouter(ProfileEdit));

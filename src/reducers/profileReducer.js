@@ -15,6 +15,9 @@ export default (state = initialState, action) => {
   case 'GET_PROFILE_SINGLE':
        return {...state, profile: action.payload};
 
+  case 'CLEAR_PROFILE':
+       return {...state, profile: {}};
+
   case 'DELETE_PROFILE':
        return {...state, profiles: state.profiles.filter( item => item._id !== action.payload) };
   default:

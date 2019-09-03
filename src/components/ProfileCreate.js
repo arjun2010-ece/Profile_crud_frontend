@@ -25,12 +25,11 @@ class ProfileCreate extends Component {
    const emailId = this.inpemail.value;
    const productImage = this.state.image;
 
-   let fd = {
-      firstName,
-      lastName,
-      emailId,
-      productImage
-   };
+   const fd = new FormData();
+   fd.append('productImage', productImage);
+   fd.append('firstName', firstName);
+   fd.append('lastName', lastName);
+   fd.append('emailId', emailId);
    this.props.profileAdd(fd, this.props.history);
  }
  render() {
