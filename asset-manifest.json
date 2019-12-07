@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Profile_crud_frontend/static/css/main.4eb8cae8.chunk.css",
+    "main.js": "/Profile_crud_frontend/static/js/main.d144193f.chunk.js",
+    "main.js.map": "/Profile_crud_frontend/static/js/main.d144193f.chunk.js.map",
+    "runtime~main.js": "/Profile_crud_frontend/static/js/runtime~main.1742c30b.js",
+    "runtime~main.js.map": "/Profile_crud_frontend/static/js/runtime~main.1742c30b.js.map",
+    "static/js/2.5b6947b7.chunk.js": "/Profile_crud_frontend/static/js/2.5b6947b7.chunk.js",
+    "static/js/2.5b6947b7.chunk.js.map": "/Profile_crud_frontend/static/js/2.5b6947b7.chunk.js.map",
+    "index.html": "/Profile_crud_frontend/index.html",
+    "precache-manifest.fd43250d87d275efaf5064add186b8a9.js": "/Profile_crud_frontend/precache-manifest.fd43250d87d275efaf5064add186b8a9.js",
+    "service-worker.js": "/Profile_crud_frontend/service-worker.js",
+    "static/css/main.4eb8cae8.chunk.css.map": "/Profile_crud_frontend/static/css/main.4eb8cae8.chunk.css.map"
+  }
+}
